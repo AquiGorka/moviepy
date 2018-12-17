@@ -29,4 +29,10 @@ RUN python -c "import imageio; imageio.plugins.ffmpeg.download()"
 RUN ln -s /root/.imageio/ffmpeg/ffmpeg.linux64 /usr/bin/ffmpeg
 
 # modify ImageMagick policy file so that Textclips work correctly.
-RUN cat /etc/ImageMagick-6/policy.xml | sed 's/none/read,write/g'> /etc/ImageMagick-6/policy.xml 
+RUN cat /etc/ImageMagick-6/policy.xml | sed 's/none/read,write/g'> /etc/ImageMagick-6/policy.xml
+
+# Maison Neue
+# download font to /usr/share/fonts/truetype
+RUN wget https://github.com/AquiGorka/moviepy/raw/master/assets/maison-neue-bold.ttf
+RUN mv maison-neue-bold.ttf /usr/share/fonts/truetype
+RUN fc-cache -f -v
